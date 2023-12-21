@@ -21,13 +21,30 @@
 
     <ul class="nav nav-pills">
         <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Клиент</a></li>
-        <li class="nav-item"><a href="/saledep" class="nav-link">Отдел продаж</a></li>
+        <li class="nav-item"><a href="/storage" class="nav-link">Склад</a></li>
         <li class="nav-item"><a href="/developdep" class="nav-link">Производственный отдел</a></li>
         <li class="nav-item"><a href="/buydep" class="nav-link">Отдел закупок</a></li>
         <li class="nav-item"><a href="/financedep" class="nav-link">Финансовый отдел</a></li>
     </ul>
 </header>
+<div  class="container mt-5">
+    <form action="#" th:action="@{/client}" th:object="${client}" method="post">
+        <p>Name: <input type="text" th:field="*{fio}" /></p>
+        <p>Address: <input type="text" th:field="*{address}" /></p>
+        <p>Phone: <input type="text" th:field="*{phone}" /></p>
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+</div>
 <div class="container mt-5">
-    <a th:href="'/RepairOrder'" class="btn btn-success">Заказ на ремонт</a>
-</body>
-</html>
+    <h1>Клиенты</h1>
+    <div th:each="item : ${items}" class="alert alert-info mt-2" >
+        <h3 th:text = "${item.fio}"/>
+        <h3 th:text = "${item.address}"/>
+        <h3 th:text = "${item.phone}"/>
+        <form th:action="'/formredactor/'+${item.clientId}+'/delete'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+
+</body></html>

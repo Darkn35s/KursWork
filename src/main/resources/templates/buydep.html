@@ -21,12 +21,45 @@
 
     <ul class="nav nav-pills">
         <li class="nav-item"><a href="/client" class="nav-link" aria-current="page">Клиент</a></li>
-        <li class="nav-item"><a href="/saledep" class="nav-link">Отдел продаж</a></li>
+        <li class="nav-item"><a href="/storage" class="nav-link">Склад</a></li>
         <li class="nav-item"><a href="/developdep" class="nav-link">Производственный отдел</a></li>
         <li class="nav-item"><a href="#" class="nav-link active">Отдел закупок</a></li>
         <li class="nav-item"><a href="/financedep" class="nav-link">Финансовый отдел</a></li>
     </ul>
 </header>
-
+<div  class="container mt-5">
+    <form method="post" action="#" th:action="@{/buydep}" th:object="${prodorder}" >
+        <p>Дата заказа: <input type="date" th:field="*{date}" /></p>
+        <select th:field="*{material}">
+            <option th:value="Материал12" th:text="Материал12"></option>
+        </select>
+        <p>Количество: <input name="a" type="text" th:field="*{matCnt}" /></p>
+        <p>Стоймость: <input name="b" type="text" th:field="*{matAmount}" /></p>
+        <select th:field="*{dealer}">
+            <option th:value="Поставщик12" th:text="Поставщик12"></option>
+        </select>
+        <p>Контрагент: <input type="text" th:field="*{contAg}" /></p>
+        <p>Менеджер: <input type="text" th:field="*{manager}" /></p>
+        <p>Контракт: <input type="text" th:field="*{contract}" /></p>
+        <p>НДС: <input name="c" type="text" th:field="*{ndc}" />%</p>
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+</div>
+<div class="container mt-5">
+    <h1>Заказы на покупку</h1>
+    <div th:each="item : ${items}" class="alert alert-info mt-2" >
+        <p>Номер заказа<h3 th:text = "${item.orderId}"/></p>
+        <p>Дата<h3 th:text = "${item.date}"/></p>
+        <p>Материал <h3 th:text = "${item.material}"/></p>
+        <p>Количество<h3 th:text = "${item.matCnt}"/></p>
+        <p>Цена за штуку<h3 th:text = "${item.matAmount}"/></p>
+        <p>Поставщик<h3 th:text = "${item.dealer}"/></p>
+        <p>КонтрАгент<h3 th:text = "${item.contAg}"/></p>
+        <p>Менеджер<h3 th:text = "${item.manager}"/></p>
+        <p>Номер договора поставщика<h3 th:text = "${item.contract}"/></p>
+        <p>НДС<h3 th:text = "${item.ndc}"/></p>
+        <p>ИТОГО<h3 th:text = "${item.total}"/></p>
+    </div>
+</div>
 </body>
 </html>
