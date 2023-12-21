@@ -41,7 +41,7 @@
         <p>Номер договора поставщика<h3 th:text = "${item.contract}"/></p>
         <p>НДС<h3 th:text = "${item.ndc}"/></p>
         <p>ИТОГО<h3 th:text = "${item.total}"/></p>
-        <a th:href="'/financedep/'+${item.orderId}+'/pay'" class="btn btn-warning">Оплатить</a>
+        <a th:href="'/financedep/'+${item.orderId}+'/payform'" class="btn btn-warning">Оплатить</a>
     </div>
 </div>
 </body>

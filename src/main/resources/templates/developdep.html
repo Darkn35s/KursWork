@@ -27,9 +27,42 @@
         <li class="nav-item"><a href="/financedep" class="nav-link">Финансовый отдел</a></li>
     </ul>
 </header>
-<div>
-    <a th:href="'developdep/repairorder'" class="btn btn-success">Заказ на ремонт</a>
-    <a th:href="'/developdep/check'" class="btn btn-success">Текущие заказы</a>
+<div  class="container mt-5">
+    <form method="post" action="#" th:action="@{/developdep}" th:object="${devorder}">
+        <p>ID клиента: <input name="b" type="text" th:field="*{clientId}" /></p>
+        <p>Дата заказа: <input type="date" th:field="*{orderdate}" /></p>
+        <label>Тип заказа</label>
+        <select th:field="*{orderType}">
+            <option th:value="Производственный" th:text="Производственный"></option>
+        </select>
+        <label>Материал 1</label>
+        <select th:field="*{material1}">
+            <option th:value="Материал1" th:text="Материал1"></option>
+        </select>
+        <label>Материал 2</label>
+        <select th:field="*{material2}">
+            <option th:value="Материал2" th:text="Материал2"></option>
+        </select>
+        <p>Кол-во материал1: <input type="text" th:field="*{material1cnt}" /></p>
+        <p>Кол-во материал2: <input type="text" th:field="*{material2cnt}" /></p>
+        <p>Бригадир: <input type="text" th:field="*{brigadir}" /></p>
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+</div>
+<div class="container mt-5">
+    <h1>Заказы на покупку</h1>
+    <div th:each="item : ${items}" class="alert alert-info mt-2" >
+        <p>Номер заказа<h3 th:text = "${item.orderId}"/></p>
+        <p>Клиент<h3 th:text = "${item.clientId}"/></p>
+        <p>Дата <h3 th:text = "${item.orderdate}"/></p>
+        <p>Тип заказа<h3 th:text = "${item.orderType}"/></p>
+        <p>Материал1<h3 th:text = "${item.material1}"/></p>
+        <p>Материал2<h3 th:text = "${item.material2}"/></p>
+        <p>Количество1<h3 th:text = "${item.material1cnt}"/></p>
+        <p>Количество2<h3 th:text = "${item.material2cnt}"/></p>
+        <p>Бригадир<h3 th:text = "${item.brigadir}"/></p>
+        <a th:href="'/developdep/'+${item.orderId}+'/notice'"class="btn btn-warning">Учесть</a>
+    </div>
 </div>
 </body>
 </html>

@@ -28,11 +28,13 @@
     </ul>
 </header>
 <div  class="container mt-5">
-    <form action="#" th:action="@{/client}" th:object="${client}" method="post">
-        <p>Name: <input type="text" th:field="*{fio}" /></p>
-        <p>Address: <input type="text" th:field="*{address}" /></p>
-        <p>Phone: <input type="text" th:field="*{phone}" /></p>
-        <button type="submit" class="btn btn-success">Создать</button>
+    <form action="#" th:action="@{/financedep}" th:object="${account}" method="post">
+        <p>ID заказа на покупку: <input type="text" th:field="*{idOrderProd}" th:value="${account.idOrderProd}" /></p>
+        <p>Сумма: <input type="text" th:field="*{amount}" th:value="${account.amount}" /></p>
+        <p>Дата: <input type="date" th:field="*{orderdate}" /></p>
+        <p>СчетДТ: <input type="text" th:field="*{DTacc}" /></p>
+        <p>СчетКТ: <input type="text" th:field="*{KTacc}" /></p>
+        <button type="submit" class="btn btn-success">Оплатить</button>
     </form>
 </div>
 </body>
